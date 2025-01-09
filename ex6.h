@@ -114,7 +114,7 @@ const char *getTypeName(PokemonType type);
  * @return newly allocated PokemonNode*
  * Why we made it: We need a standard way to allocate BST nodes.
  */
-PokemonNode *createPokemonNode(const PokemonData *data);
+PokemonNode *createPokemonNode(const PokemonData *data); //done
 
 /**
  * @brief Create an OwnerNode for the circular owners list.
@@ -123,7 +123,7 @@ PokemonNode *createPokemonNode(const PokemonData *data);
  * @return newly allocated OwnerNode*
  * Why we made it: Each user is represented as an OwnerNode.
  */
-OwnerNode *createOwner(char *ownerName, PokemonNode *starter);
+OwnerNode *createOwner(char *ownerName, PokemonNode *starter); //done
 
 /**
  * @brief Free one PokemonNode (including name).
@@ -398,7 +398,7 @@ void removeOwnerFromCircularList(OwnerNode *target);
  * @return pointer to the matching OwnerNode or NULL
  * Why we made it: We often need to locate an owner quickly.
  */
-OwnerNode *findOwnerByName(const char *name);
+OwnerNode *findOwnerByName(const char *name);//done
 
 /* ------------------------------------------------------------
    10) Owner Menus
@@ -414,7 +414,7 @@ void enterExistingPokedexMenu(void);
  * @brief Creates a new Pokedex (prompt for name, check uniqueness, choose starter).
  * Why we made it: The main entry for building a brand-new Pokedex.
  */
-void openPokedexMenu(void);
+void openPokedexMenu(void); //done
 
 /**
  * @brief Delete an entire Pokedex (owner) from the list.
