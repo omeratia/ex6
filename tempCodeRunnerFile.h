@@ -1,0 +1,1 @@
+void insertPokemonNode(PokemonNode *root, PokemonNode *newNode);

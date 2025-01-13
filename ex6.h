@@ -59,6 +59,29 @@ typedef struct OwnerNode
     struct OwnerNode *prev;   // Previous owner in the linked list
 } OwnerNode;
 
+typedef struct queueNode {
+   //node to be created and freed in the queue. each node hold pointer to the pokemon, and pointer to 
+   //next queueNode item
+   PokemonNode* pokeNode;
+   struct queueNode* next;
+}queueNode;
+
+typedef struct pokemonQueue
+//queue for our BFS
+{
+   queueNode *front, *rear;
+}pokemonQueue;
+
+queueNode* createNode(PokemonNode* pokeNode);
+
+pokemonQueue* createPokemonQueue();
+
+int isQueueEmpty(pokemonQueue* queue);
+
+void addToQueue(pokemonQueue *pokeQueue, PokemonNode* pokeNode);
+
+PokemonNode* removeFromQueue(pokemonQueue *queue);
+
 // Global head pointer for the linked list of owners
 OwnerNode *ownerHead = NULL;
 
@@ -157,7 +180,7 @@ void freeOwnerNode(OwnerNode *owner);
  * @return updated BST root
  * Why we made it: Standard BST insertion ignoring duplicates.
  */
-PokemonNode *insertPokemonNode(PokemonNode *root, PokemonNode *newNode);
+void insertPokemonNode(PokemonNode *root, PokemonNode *newNode);
 
 /**
  * @brief BFS search for a Pokemon by ID in the BST.
@@ -166,7 +189,7 @@ PokemonNode *insertPokemonNode(PokemonNode *root, PokemonNode *newNode);
  * @return pointer to found node or NULL
  * Why we made it: BFS ensures we find nodes even in an unbalanced tree.
  */
-PokemonNode *searchPokemonBFS(PokemonNode *root, int id);
+PokemonNode *searchPokemonBFS(PokemonNode *root, int id); //done
 
 /**
  * @brief Remove node from BST by ID if found (BST removal logic).
@@ -176,6 +199,10 @@ PokemonNode *searchPokemonBFS(PokemonNode *root, int id);
  * Why we made it: We handle special cases of a BST remove (0,1,2 children).
  */
 PokemonNode *removeNodeBST(PokemonNode *root, int id);
+
+PokemonNode *findParent(PokemonNode *root, PokemonNode *child);
+
+PokemonNode *findMin(PokemonNode *root);
 
 /**
  * @brief Combine BFS search + BST removal to remove Pokemon by ID.
@@ -194,6 +221,7 @@ PokemonNode *removePokemonByID(PokemonNode *root, int id);
 // so don't be confused by the name, but please remember that you must use it.
 
 typedef void (*VisitNodeFunc)(PokemonNode *);
+//Visit functions
 
 /**
  * @brief Generic BFS traversal: call visit() on each node (level-order).
@@ -251,7 +279,7 @@ typedef struct
  * @param cap initial capacity
  * Why we made it: We store pointers to PokemonNodes for alphabetical sorting.
  */
-void initNodeArray(NodeArray *na, int cap);
+NodeArray *initNodeArray();
 
 /**
  * @brief Add a PokemonNode pointer to NodeArray, realloc if needed.
@@ -268,7 +296,6 @@ void addNode(NodeArray *na, PokemonNode *node);
  * Why we made it: We gather everything for qsort.
  */
 void collectAll(PokemonNode *root, NodeArray *na);
-
 /**
  * @brief Compare function for qsort (alphabetical by node->data->name).
  * @param a pointer to a pointer to PokemonNode
@@ -277,7 +304,6 @@ void collectAll(PokemonNode *root, NodeArray *na);
  * Why we made it: Sorting by name for alphabetical display.
  */
 int compareByNameNode(const void *a, const void *b);
-
 /**
  * @brief BFS is nice, but alphabetical means we gather all nodes, sort by name, then print.
  * @param root BST root
@@ -420,7 +446,7 @@ void openPokedexMenu(void); //done
  * @brief Delete an entire Pokedex (owner) from the list.
  * Why we made it: Let user pick which Pokedex to remove and free everything.
  */
-void deletePokedex(void);
+void deletePokedex();
 
 /**
  * @brief Merge the second owner's Pokedex into the first, then remove the second owner.
