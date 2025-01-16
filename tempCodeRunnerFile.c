@@ -1,1 +1,1 @@
-evolvePokemon(cur);
+printf("inserted %s to the dest root\n",current->data->name);

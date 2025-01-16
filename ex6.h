@@ -448,11 +448,15 @@ void openPokedexMenu(void); //done
  */
 void deletePokedex();
 
+void deletePokedexByAdress(OwnerNode* owner);
+
 /**
  * @brief Merge the second owner's Pokedex into the first, then remove the second owner.
  * Why we made it: BFS copy demonstration plus removing an owner.
  */
 void mergePokedexMenu(void);
+
+void BFSMerge(PokemonNode *source, PokemonNode *dest);
 
 /* ------------------------------------------------------------
    11) Printing Owners in a Circle
@@ -462,7 +466,7 @@ void mergePokedexMenu(void);
  * @brief Print owners left or right from head, repeating as many times as user wants.
  * Why we made it: Demonstrates stepping through a circular list in a chosen direction.
  */
-void printOwnersCircular(void);
+void printOwnersCircular();
 
 /* ------------------------------------------------------------
    12) Cleanup All Owners at Program End
@@ -472,7 +476,7 @@ void printOwnersCircular(void);
  * @brief Frees every remaining owner in the circular list, setting ownerHead = NULL.
  * Why we made it: Ensures a squeaky-clean exit with no leftover memory.
  */
-void freeAllOwners(void);
+void freeAllOwners();
 
 /* ------------------------------------------------------------
    13) The Main Menu
